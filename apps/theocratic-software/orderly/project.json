@@ -1,0 +1,74 @@
+{
+  "name": "theocratic-software-orderly",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/theocratic-software/orderly/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/theocratic-software/orderly"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "theocratic-software-orderly:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "theocratic-software-orderly:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "theocratic-software-orderly:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "theocratic-software-orderly:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "theocratic-software-orderly:build:development"
+        },
+        "production": {
+          "buildTarget": "theocratic-software-orderly:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/theocratic-software/orderly"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/apps/theocratic-software/orderly"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/theocratic-software/orderly/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

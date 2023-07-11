@@ -14,7 +14,20 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@configs": ["libs/config/src/index.ts"],
+      "@service/dexie": ["libs/services/dexie/src/index.ts"],
+      "@service/firebase": ["libs/services/firebase/src/index.ts"],
+      "@service/mapbox": ["libs/services/mapbox/src/index.ts"],
+      "@service/utility": ["libs/services/utility/src/index.ts"],
+      "@ui/containers": ["libs/ui/containers/src/index.ts"],
+      "@ui/examples": ["libs/ui/components/examples/src/index.ts"],
+      "@ui/firebase": ["libs/ui/components/firebase/src/index.ts"],
+      "@ui/icons": ["libs/ui/icons/src/index.ts"],
+      "@ui/inputs": ["libs/ui/inputs/src/index.ts"],
+      "@ui/mapbox": ["libs/ui/components/mapbox/src/index.ts"],
+      "@ui/utility": ["libs/ui/components/utility/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

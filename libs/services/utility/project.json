@@ -1,0 +1,8 @@
+{
+  "name": "services-utility",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/utility/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}
