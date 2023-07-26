@@ -1,12 +1,16 @@
-/* eslint-disable-next-line */
-export interface SettingsProps {}
 
-export function Settings(props: SettingsProps) {
-  return (
-    <div>
-      <h1>Welcome to Settings!</h1>
-    </div>
-  );
-}
+type SettingsPageProps = {
+  changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
+};
+
+export function Settings({changeSubpage }: SettingsPageProps) {
+
+   //console.log('Settings', `${variable}`)
+    return (
+      <div className={`h-full dark:text-white center-h-col gap-2 p-2`}>
+      Settings
+      </div>
+    )
+};
 
 export default Settings;

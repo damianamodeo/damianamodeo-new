@@ -1,0 +1,23 @@
+{
+  // Place your Latest workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  "-Map Function": {
+    "prefix": "function",
+    "body": [
+
+      "{${1:${CLIPBOARD}}.map((${2:${CLIPBOARD}}: any, index: number) => {",
+      "   //console.log('${TM_FILENAME_BASE}', `${'${2:${CLIPBOARD}}'}`)",
+      "  return <div key={${2:${CLIPBOARD}}.id}>",
+      "    {${2:${CLIPBOARD}}.$3}",
+      "  </div>;",
+      "})}",
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+}

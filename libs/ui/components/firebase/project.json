@@ -1,8 +1,0 @@
-{
-  "name": "ui-components-firebase",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ui/components/firebase/src",
-  "projectType": "library",
-  "tags": [],
-  "targets": {}
-}

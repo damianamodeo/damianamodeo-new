@@ -1,10 +1,16 @@
-/* eslint-disable-next-line */
-export interface SettingsProps {}
+import { Button } from '@ui';
 
-export function Settings(props: SettingsProps) {
+type SettingsPageProps = {
+  changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
+};
+
+export function Settings({ changeSubpage }: SettingsPageProps) {
+  //console.log('Settings', `${variable}`)
   return (
-    <div>
-      <h1>Welcome to Settings!</h1>
+    <div className={`h-full dark:text-white center-h-col gap-2 p-2`}>
+      <Button onClick={() => changeSubpage('makeCongregation', '<')}>
+        Make Congregation
+      </Button>
     </div>
   );
 }

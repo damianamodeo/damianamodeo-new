@@ -1,0 +1,24 @@
+{
+  "eslint.validate": ["json"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+
+    "**/dev": true,
+    // "**/proclaimer": true,
+    // "**/orderly": true,
+    // "**/libs": true,
+    // "**/services": true,
+    // "**/ui": true,
+
+    "**/tools": true,
+    "**/dist": true,
+    "**/.firebase": true,
+    "**/.env": false,
+    // "**/.files": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  // Place your Latest workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  "-Header Component": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "file",
+    "body": [
+      "import { Header, ChevronLeftIcon } from '@ui';",
+      "",
+      "type ${TM_FILENAME_BASE}PageHeaderProps = {",
+      "  changeSubpage: (newSubpage: string, direction: '<' | '>') => void;",
+      "};",
+      "",
+      "const ${TM_FILENAME_BASE} = ({ changeSubpage }: ${TM_FILENAME_BASE}PageHeaderProps) => {",
+      "",
+      "  //console.log('${TM_FILENAME_BASE}', `${'variable'}`)",
+      "  return (",
+      "    <Header",
+      "      left={",
+      "        <div",
+      "          className={`text-[2rem] m-auto`}",
+      "          onClick={() => changeSubpage('${2|Home,Settings|}', '>')}",
+      "        ><ChevronLeftIcon /></div>",
+      "      }",
+      "      center={<div className={`text-center`}>${1:$TM_FILENAME_BASE}</div>}",
+      "      right={",
+      "        <div",
+      "          className={`text-[2rem] m-auto`}",
+      "          onClick={() => {",
+      "            return;",
+      "          }}",
+      "        ></div>",
+      "      }",
+      "    />",
+      "  );",
+      "};",
+      "",
+      "export default ${TM_FILENAME_BASE};"
+    ],
+    "description": "Header Component"
+  }
+}

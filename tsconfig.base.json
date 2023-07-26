@@ -15,18 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@configs": ["libs/config/src/index.ts"],
-      "@service/dexie": ["libs/services/dexie/src/index.ts"],
-      "@service/firebase": ["libs/services/firebase/src/index.ts"],
-      "@service/mapbox": ["libs/services/mapbox/src/index.ts"],
-      "@service/utility": ["libs/services/utility/src/index.ts"],
-      "@ui/containers": ["libs/ui/containers/src/index.ts"],
-      "@ui/examples": ["libs/ui/components/examples/src/index.ts"],
-      "@ui/firebase": ["libs/ui/components/firebase/src/index.ts"],
-      "@ui/icons": ["libs/ui/icons/src/index.ts"],
-      "@ui/inputs": ["libs/ui/inputs/src/index.ts"],
-      "@ui/mapbox": ["libs/ui/components/mapbox/src/index.ts"],
-      "@ui/utility": ["libs/ui/components/utility/src/index.ts"]
+      "@services": ["libs/services/src/index.ts"],
+      "@ui": ["libs/ui/src/index.ts"],
+      "@CONTAINERS/*": ["apps/theocratic-software/proclaimer/src/old/components/containers/*"],
+      "@EXAMPLES/*": ["apps/theocratic-software/proclaimer/src/old/components/examples/*"],
+      "@INPUTS/*": ["apps/theocratic-software/proclaimer/src/old/components/inputs/*"],
+      "@ICONS/*": ["apps/theocratic-software/proclaimer/src/old/components/icons/*"],
+      "@COMPONENTS/*": ["apps/theocratic-software/proclaimer/src/old/components/*"],
+      "@SERVICES/*": ["apps/theocratic-software/proclaimer/src/old/services/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

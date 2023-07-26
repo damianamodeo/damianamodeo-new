@@ -1,10 +1,26 @@
-/* eslint-disable-next-line */
-export interface HomeProps {}
+import { Button } from '@ui';
 
-export function Home(props: HomeProps) {
+type HomePageProps = {
+  changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
+};
+
+export function Home({ changeSubpage }: HomePageProps) {
+  const pages = ['Local Storage', 'React PDF', 'React Charts', 'Nivo', 'Dexie'];
+
+  //console.log('Home', `${variable}`)
   return (
-    <div>
-      <h1>Welcome to Home!</h1>
+    <div className={`dark:text-white center-h-col gap-2 p-2`}>
+      {pages.map((page: string, index: number) => {
+        return (
+          <Button
+            onClick={() => changeSubpage(page, '<')}
+            width={'auto'}
+            key={page}
+          >
+            {page}
+          </Button>
+        );
+      })}
     </div>
   );
 }

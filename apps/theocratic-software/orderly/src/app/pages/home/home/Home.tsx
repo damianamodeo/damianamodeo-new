@@ -1,10 +1,19 @@
+import { createCongregation } from '@services';
+import { Button, FirebaseUser, useAuth } from '@ui';
+
 /* eslint-disable-next-line */
 export interface HomeProps {}
 
 export function Home(props: HomeProps) {
+  const {currentUser}: any = useAuth()
+  
+  // const handleClick = () => {
+  //   createCongregation();
+  // };
   return (
     <div>
-      <h1>Welcome to Home!</h1>
+      <FirebaseUser></FirebaseUser>
+      <Button onClick={()=>createCongregation(currentUser)}>Create Congregation</Button>
     </div>
   );
 }
