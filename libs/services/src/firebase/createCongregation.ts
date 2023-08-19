@@ -2,15 +2,20 @@ import { Transaction, doc, runTransaction, setDoc } from 'firebase/firestore';
 import { fdb } from './config';
 
 export const createCongregation = async (currentUser: any) => {
-  const congName = '';
-
-  const document = doc(fdb, ...[congName]);
   try {
-    const lkjsdnf = runTransaction(fdb, (transaction: Transaction): Promise<unknown> => {
-      console.log(transaction); //Log Variable
-    //   return "sfg"
+    await runTransaction(fdb, async (transaction: Transaction) => {
+      // const document = await transaction.get(congName);
+
+      // if (!document.exists()) {
+      //   throw 'Document does not exist!';
+      // }
+
+      // transaction.update(document, { population: "newPopulation" });
+      return 'sfg';
     });
-  } catch {return "sdgf"}
+  } catch {
+    return 'sdgf';
+  }
 };
 
 export default createCongregation;

@@ -8,7 +8,7 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
 
-    "**/dev": true,
+    // "**/dev": true,
     // "**/proclaimer": true,
     // "**/orderly": true,
     // "**/libs": true,
