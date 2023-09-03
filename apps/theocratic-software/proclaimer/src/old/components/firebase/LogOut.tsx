@@ -1,4 +1,4 @@
-import Button from "@INPUTS/button/Button";
+import Button from "../inputs/Button/Button";
 import { useAuth } from "./AuthContext";
 
 const LogOut = () => {

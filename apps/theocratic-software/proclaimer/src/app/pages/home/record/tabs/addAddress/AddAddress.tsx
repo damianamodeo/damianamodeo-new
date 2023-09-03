@@ -67,7 +67,7 @@ type ReducerType = [
 
 const AddAddress = ({ mapDetails }: AddAddressType) => {
   const [state, dispatch]: ReducerType = useReducer(reducer, {
-    mapID: localStorage.getItem("addAddressMapID") || "init",
+    mapID: 0, //localStorage.getItem("addAddressMapID") || "init",
     suburb: localStorage.getItem("addAddressSuburb") || "init",
     street: localStorage.getItem("addAddressStreet") || "init",
     houseNumber: localStorage.getItem("addAddressHouseNumber") || "",
@@ -122,7 +122,7 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
       <div className="flex justify-center p-2 w-full">
         <Form>
           {/* Map Select */}
-          <Form.Select
+          {/* <Form.Select
             onChange={(val) => {
               localStorage.setItem("addAddressMapID", val);
               localStorage.removeItem("addAddressSuburb");
@@ -137,7 +137,7 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
             width="full"
             height="md"
           ></Form.Select>
-          <div className="h-2"></div>
+          <div className="h-2"></div> */}
           {/* Suburb Select */}
           {state.mapID !== "init" && (
             <Form.Select

@@ -325,7 +325,7 @@ function Select({
               <Listbox.Options
                 className={`${null} ${optionsClasses({
                   color,
-                })} dark:bg-grey-850 bg-white p-1 mb-20 mt-1 rounded-lg border appearance-none-xxx focus:outline-none focus:ring-0 peer absolute w-full z-50`}
+                })} dark:bg-grey-850 bg-white dark:bg-black p-1 mb-20 mt-1 rounded-lg border appearance-none-xxx focus:outline-none focus:ring-0 peer absolute w-full z-50`}
               >
                 {options?.map((item) => (
                   <Listbox.Option

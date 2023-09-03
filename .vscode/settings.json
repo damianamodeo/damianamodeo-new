@@ -16,7 +16,7 @@
     // "**/ui": true,
 
     "**/tools": true,
-    "**/dist": true,
+    // "**/dist": true,
     "**/.firebase": true,
     "**/.env": false,
     // "**/.files": true

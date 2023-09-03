@@ -1,0 +1,166 @@
+ADD APP
+    clear 
+    echo "ADD APP"
+    npx nx g @nx/react:application --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true --unitTestRunner=vitest --routing=false
+    echo "ADD TAILWIND" 
+    npx nx generate @nx/react:setup-tailwind
+
+     
+
+            
+
+        ADD INIT PAGES
+        TO DEV
+            clear
+            echo ADD NEW APP TO DEV
+            npx nx g @nx/react:application --directory=dev --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true  --unitTestRunner=vitest --routing=false
+            npx nx g @nx/react:application --name=temp --directory=dev --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true  --unitTestRunner=vitest --routing=false
+            clear
+            echo ADD NEW HOME PAGE
+            npx nx generate @nx/react:component --name=Home --directory=app/headers/home --export=false --pascalCaseFiles=true --routing=false --style=none 
+            clear
+            echo ADD NEW HOME HEADER
+            npx nx generate @nx/react:component --name=HomeHeader --directory=app/pages/home --export=false --pascalCaseFiles=true --routing=false --style=none 
+            clear
+            echo ADD NEW SETTINGS PAGE
+            npx nx generate @nx/react:component --name=Settings --directory=app/headers/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            clear
+            echo ADD NEW SETTINGS HEADER
+            npx nx generate @nx/react:component --name=SettingsHeader --directory=app/pages/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx g @nx/workspace:remove --projectName=dev-temp
+
+        ADD TAILWIND
+            clear 
+            npx nx generate @nx/react:setup-tailwind
+
+    ADD APP PAGES
+
+        TO HOME
+            clear
+            echo ADD NEW PAGE
+            npx nx generate @nx/react:component --directory=app/pages/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            clear
+            echo ADD NEW HEADER
+            npx nx generate @nx/react:component --directory=app/pages/home/headers --export=false --pascalCaseFiles=true --routing=false --style=none
+
+        TO SETTINGS
+            clear
+            echo ADD NEW PAGE
+            npx nx generate @nx/react:component --directory=app/pages/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            clear
+            echo ADD NEW HEADER
+            npx nx generate @nx/react:component --directory=app/pages/settings/headers --export=false --pascalCaseFiles=true --routing=false --style=none
+  
+    echo ADD NEW REACT LIBRARY COMPONENTS && clear && npx nx generate @nx/react:component --export=true --pascalCaseFiles=true --routing=false --style=none
+
+
+PROJECT INITS ...
+    NEW NX WORKSPACE
+        clear 
+        npx create-nx-workspace damianamodeo --preset=react-monorepo --bundler=vite workspaceType=integrated --style=css --nxCloud=true
+
+    echo "ADD ALL APPS AND LIBRARIES"
+        clear
+        npx nx g @nx/react:application --name=examples --directory=dev --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true --style=css --unitTestRunner=vitest --routing=false
+        npx nx g @nx/react:application --name=orderly --directory=theocratic-software --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true --style=css --unitTestRunner=vitest --routing=false
+        npx nx g @nx/react:application --name=proclaimer --directory=theocratic-software --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true --style=css --unitTestRunner=vitest --routing=false
+
+        npx nx g @nx/react:library --name=inputs --directory=ui --importPath=@ui/inputs --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=containers --directory=ui --importPath=@ui/containers --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=icons --directory=ui --importPath=@ui/icons --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=firebase --directory=ui/components --importPath=@ui/firebase --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=mapbox --directory=ui/components --importPath=@ui/mapbox --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=utility --directory=ui/components --importPath=@ui/utility --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+        npx nx g @nx/react:library --name=examples --directory=ui/components --importPath=@ui/examples --bundler=none --unitTestRunner=none  --component=false  --linter=none --minimal=true --pascalCaseFiles=true --routing=false --style=none
+
+        npx nx generate @nx/js:library --name=dexie --directory=services --importPath=@service/dexie --unitTestRunner=none --bundler=none  --linter=none --minimal=true --simpleName=true --no-interactive
+        npx nx generate @nx/js:library --name=mapbox --directory=services --importPath=@service/mapbox --unitTestRunner=none --bundler=none  --linter=none --minimal=true --simpleName=true --no-interactive
+        npx nx generate @nx/js:library --name=utility --directory=services --importPath=@service/utility --unitTestRunner=none --bundler=none  --linter=none --minimal=true --simpleName=true --no-interactive
+        npx nx generate @nx/js:library --name=firebase --directory=services --importPath=@service/firebase --unitTestRunner=none --bundler=none  --linter=none --minimal=true --simpleName=true --no-interactive
+
+        npx nx generate @nx/js:library --name=config --importPath=@configs --unitTestRunner=none --bundler=none  --linter=none --minimal=true --simpleName=true --no-interactive
+
+        npx nx g @nx/react:application --name=temp --directory=dev --e2eTestRunner=none --globalCss=true --pascalCaseFiles=true  --unitTestRunner=vitest --routing=false
+
+        clear
+        echo ADD ALL PAGES
+            npx nx generate @nx/react:component --project=theocratic-software-proclaimer --name=home --directory=app/pages/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-proclaimer --name=settings --directory=app/pages/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-orderly --name=home --directory=app/pages/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-orderly --name=settings --directory=app/pages/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=dev-examples --name=home --directory=app/pages/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=dev-examples --name=settings --directory=app/pages/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+
+            npx nx generate @nx/react:component --project=theocratic-software-proclaimer --name=HomeHeader --directory=app/headers/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-proclaimer --name=SettingsHeader --directory=app/headers/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-orderly --name=HomeHeader --directory=app/headers/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=theocratic-software-orderly --name=SettingsHeader --directory=app/headers/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=dev-examples --name=HomeHeader --directory=app/headers/home --export=false --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --project=dev-examples --name=SettingsHeader --directory=app/headers/settings --export=false --pascalCaseFiles=true --routing=false --style=none
+
+        clear 
+        echo ADD ALL COMPONENTS
+            npx nx generate @nx/react:component --name=button --project=ui-inputs --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=autocomplete --project=ui-inputs --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=select --project=ui-inputs --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=switch --project=ui-inputs --export=true --pascalCaseFiles=true --routing=false --style=none
+
+            npx nx generate @nx/react:component --name=ChevronLeftIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=ChevronLeftIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=ChevronRightIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=ChevronUpIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=ChevronDownIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=HomeIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=SettingsIcon --project=ui-icons --export=true --pascalCaseFiles=true --routing=false --style=none
+
+            npx nx generate @nx/react:component --name=TabbedPage --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Modal --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Longpress --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Header --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Disclosure --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Card --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+            npx nx generate @nx/react:component --name=Screen --project=ui-containers --export=true --pascalCaseFiles=true --routing=false --style=none
+
+        clear 
+        echo ADD TAILWIND
+            npm install -D tailwindcss postcss autoprefixer
+            npx nx generate @nx/react:setup-tailwind --project=dev-examples
+            npx nx generate @nx/react:setup-tailwind --project=theocratic-software-proclaimer
+            npx nx generate @nx/react:setup-tailwind --project=theocratic-software-orderly
+
+        echo REMOVE TEMP PROJECT
+            npx nx g @nx/workspace:remove --projectName=dev-temp
+
+
+        clear
+        echo ADD DEPENDENCIES
+            npm i firebase @tauri-apps/api framer-motion tailwind-merge usehooks-ts tslib firebase-functions firebase-admin class-variance-authority mapbox-gl dexie dexie-react-hooks use-supercluster react-mapbox-gl-cluster react-map-gl
+        clear   
+        echo ADD DEV DEPENDENCIES
+            npm i -D firebase-tools pwa-asset-generator
+        clear
+        echo ADD GLOBALS
+
+
+                                            echo  "sudo npm install -g firebase-tools"
+
+
+        clear
+        echo LOGIIN IN TO FIREBASE
+            firebase login
+            firebase init
+
+        clear
+        echo SET UP HOSTING
+            firebase target:apply hosting examples theocratic-software-examples
+
+            firebase target:apply hosting orderly theocratic-software-orderly
+            firebase target:apply hosting orderly-alpha theocratic-software-orderly-alpha
+
+            firebase target:apply hosting proclaimer proclaimer
+            firebase target:apply hosting proclaimer-alpha proclaimer-alpha
+
+firebase deploy --only hosting:examples
+
+
+

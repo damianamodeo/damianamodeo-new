@@ -7,9 +7,9 @@ type SettingsHeaderType = {
 const SettingsHeader = ({ changeSubpage }: SettingsHeaderType) => {
   return (
     <Header
-      left={"null"}
+      left={""}
       center={<div className={``}>Settings</div>}
-      right={"null"}
+      right={""}
     ></Header>
   );
 };

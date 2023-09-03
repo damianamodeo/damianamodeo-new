@@ -1,6 +1,12 @@
 const ChangeLog = () => {
   const changes = [
     {
+      date: "September 3, 2023",
+      changes: [
+        "Remove map number select box when adding not at home",
+      ],
+    },
+    {
       date: "June 24, 2023",
       changes: [
         "Remember address details after leaving Record page",

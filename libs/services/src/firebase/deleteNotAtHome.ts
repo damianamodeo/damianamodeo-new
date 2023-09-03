@@ -1,4 +1,4 @@
-import { fdb } from "@SERVICES/firebase/config";
+import { fdb } from "./config";
 import {
   deleteField,
   doc,
