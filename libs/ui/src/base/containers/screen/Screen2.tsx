@@ -1,105 +1,271 @@
-import {
-  Dispatch,
-  ReactElement,
-  ReactNode,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
+import { JSXElementConstructor, ReactNode } from 'react';
+import { AnimatePresence, motion as m, useCycle } from 'framer-motion';
+import { Suspense, useReducer } from 'react';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
-type State = { section: string; page: string };
-
-type PageChange = { type: 'page'; payload: { page: string; section: string } };
-type SectionChange = { type: 'section'; payload: { section: string } };
-
-type DispatchAction = PageChange | SectionChange;
-
-type Content = ({
-  state,
-  dispatch,
-}: {
-  state: State;
-  dispatch: Dispatch<DispatchAction>;
-}) => ReactNode;
-
-type Screen2Props = {
-  content: {
-    section: string;
-    Icon: ReactElement;
-    pages: {
-      name: string;
-      Page: Content;
-      Header?: Content;
-    }[];
-  }[];
+const variants = {
+  initial: (direction: '<') => {
+    return {
+      zIndex: 1,
+      x: direction === '<' ? '-100%' : '100%',
+    };
+  },
+  animate: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: '<') => {
+    return {
+      zIndex: 0,
+      x: direction === '<' ? '100%' : '-100%',
+    };
+  },
 };
 
-const reducer = (state: State, { type, payload }: DispatchAction) => {
+//#region TYPES
+export type ContentProps = {
+  control?: {
+    state: State;
+    changeSection: (section: string) => void;
+    changePage: (section: string, page: string, direction: Direction) => void;
+  };
+};
+
+type PageChange = {
+  type: 'page';
+  payload: { page: string; section: string; direction: Direction };
+};
+
+type SectionChange = {
+  type: 'section';
+  payload: { section: string };
+};
+
+export type State = {
+  section: string;
+  page: { [key: string]: string };
+  direction: Direction;
+};
+
+type Direction = '<' | '>';
+
+export const reducer = (
+  state: State,
+  { type, payload }: PageChange | SectionChange
+): State => {
   if (type === 'page')
     return {
-      ...state,
-      page: payload.page,
+      page: { ...state.page, [payload.section]: payload.page },
       section: payload.section,
+      direction: payload.direction,
     };
   if (type === 'section') return { ...state, section: payload.section };
   return { ...state };
 };
 
+export type Screen2Props = {
+  content: {
+    section: string;
+    Icon: JSXElementConstructor<any>;
+    pages: {
+      [key: string]:
+        | {
+            Page: ({ control }: ContentProps) => ReactNode;
+            Header?: ({ control }: ContentProps) => ReactNode;
+          }
+        | any;
+    };
+  }[];
+};
+//#endregion
+
+//#region COMPONENT
+
 export const Screen2 = ({ content }: Screen2Props) => {
+  //#region COMPONENT LOGIC
+
   const { isDarkMode } = useTernaryDarkMode();
 
-  const [state, dispatch] = useReducer(reducer, {
+  const initialState: State = {
+    direction: '>',
     section: content[0].section,
-    page: content[0].section,
-  });
+    page: content.reduce((obj, item) => {
+      obj[item.section] = item.section;
+      return obj;
+    }, {} as { [key: string]: string }),
+  };
 
-  // const changeSection = (section: keyof typeof content.section) => {
-  //   dispatch({ type: 'section', payload: { section: section } });
-  // };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const control = {
+    state: state,
+
+    changeSection: (section: string) => {
+      dispatch({
+        type: 'section',
+        payload: { section: section },
+      });
+    },
+
+    changePage: (section: string, page: string, direction: Direction) => {
+      dispatch({
+        type: 'page',
+        payload: { section: section, page: page, direction: direction },
+      });
+    },
+  };
+
+  //#endregion
+
+  //#region JSX
 
   return (
-    <div className={` ${isDarkMode && 'dark'}  inset-0 absolute`}>
+    <div
+      className={`${isDarkMode && 'dark'}  inset-0 absolute`}
+      key={Math.random()}
+    >
       {content?.map(({ section, pages }, index) => {
+        const Page = pages[state.page[section]].Page;
+        const Header = pages[state.page[section]].Header;
+
         return (
-          <div key={index}>
-            {pages.map(({ name, Header, Page }, index) => {
-              if (name !== state.page) return;
-              return (
-                <div
-                  className={`${section !== state.section && 'h-0'} h-full`}
-                  key={index}
-                >
-                  {/*** HEADER ***/}
-                  {Header && (
-                    <div
-                      className={`bg-grey-200 dark:bg-neutral-800 dark:text-white h-16`}
-                    >
-                      <Header state={state} dispatch={dispatch} />
-                    </div>
-                  )}
-
-                  {/*** PAGE ***/}
+          <>
+            {section === state.section && (
+              <div
+                key={index}
+                className={`${section !== state.section && 'hidden'} `}
+              >
+                {
+                  //#region HEADER
+                }
+                {Header && (
                   <div
-                    className={`bg-white dark:bg-black dark:text-white h-full`}
+                    className={`fixed w-full bg-grey-200 dark:bg-neutral-800 dark:text-white h-16`}
                   >
-                    <Page state={state} dispatch={dispatch} />
+                    <Suspense
+                      fallback={<div className={`center h-full`}>Loading</div>}
+                    >
+                      <Header control={control} />
+                    </Suspense>
                   </div>
-                </div>
-              );
-            })}
+                )}
 
-            {/*** NAVBAR ***/}
-          </div>
+                {
+                  //#endregion
+                }
+                {
+                  //#region PAGE
+                }
+                <div
+                  className={`fixed inset-y-16 w-full dark:bg-black dark:text-white overflow-y-auto hideScollbar`}
+                >
+                  <AnimatePresence
+                    mode="popLayout"
+                    initial={false}
+                    custom={state.direction}
+                  >
+                    <m.div
+                      className="h-full overflow-hidden"
+                      key={state.page[state.section]}
+                      custom={state.direction}
+                      variants={variants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{
+                        x: { type: 'tween', duration: 0.3 },
+                      }}
+
+                      // {...(state.direction !== '-' && {
+                      //   initial: 'initial',
+                      //   animate: 'animate',
+                      //   exit: 'exit',
+                      //   transition: { x: { type: 'tween', duration: 0.5 } },
+                      // })}
+
+                      // {...(state.direction === '-'
+                      //   ? {
+                      //       initial: {
+                      //         x: 0,
+                      //       },
+                      //       animate: { x: 0 },
+                      //       exit: {
+                      //         x: 0,
+                      //       },
+                      //       transition: {
+                      //         x: { type: 'tween', duration: 0.4 },
+                      //       },
+                      //     }
+                      //   : {
+                      //       initial: {
+                      //         x: `${
+                      //           state.direction === '<' ? '100%' : '-100%'
+                      //         }`,
+                      //       },
+                      //       animate: { x: 0 },
+                      //       exit: {
+                      //         x: `${
+                      //           state.direction === '<' ? '100%' : '-100%'
+                      //         }`,
+                      //       },
+                      //       transition: {
+                      //         x: { type: 'tween', duration: 0.4 },
+                      //       },
+                      //     })}
+                    >
+                      <Suspense
+                        fallback={
+                          <div className={`center h-full`}>Loading</div>
+                        }
+                      >
+                        <Page control={control} />
+                      </Suspense>
+                    </m.div>
+                  </AnimatePresence>
+                </div>
+                {
+                  //#endregion
+                }
+              </div>
+            )}
+          </>
         );
       })}
+      {
+        //#region NAVBAR
+      }
       <div
-        className={`bg-grey-200 dark:bg-neutral-800 dark:text-white bottom-0 fixed h-16 w-full`}
+        className={`bg-grey-200 dark:bg-neutral-800 dark:text-white bottom-0 fixed h-16 w-full flex center`}
       >
-        Navbar
+        {content.map(({ section, Icon }: any) => {
+          return (
+            <div
+              key={section}
+              className={`text-xs center-col w-full h-full ${
+                state.section === section
+                  ? 'text-primary-500 dark:text-primary-400'
+                  : 'text-grey-900 dark:text-grey-100'
+              }`}
+              onClick={() =>
+                state.section === section
+                  ? control.changePage(section, section, '<')
+                  : control.changeSection(section)
+              }
+            >
+              <Icon {...(state.section !== section && { color: 'default' })} />
+              {section}
+            </div>
+          );
+        })}
       </div>
+      {
+        //#endregion
+      }
     </div>
   );
+  //#endregion
 };
+//#endregion
 
 export default Screen2;
