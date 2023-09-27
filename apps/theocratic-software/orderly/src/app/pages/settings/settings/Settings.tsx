@@ -1,4 +1,4 @@
-import { Button } from '@ui';
+import { Button } from '@ui2';
 
 type SettingsPageProps = {
   changeSubpage: (newSubpage: string, direction: '<' | '>') => void;

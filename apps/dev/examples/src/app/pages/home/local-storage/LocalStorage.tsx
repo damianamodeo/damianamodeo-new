@@ -1,13 +1,13 @@
-import { EditLocalStorage, LocalStorageValues } from '@ui';
+import { ContentProps } from '@ui2';
 
-/* eslint-disable-next-line */
-export interface LocalStorageProps {}
-
-export function LocalStorage(props: LocalStorageProps) {
+export function LocalStorage({ control }: ContentProps) {
   return (
-    <div className={`${null} h-full dark:text-white center-h-col gap-2 p-2`}>
-      <EditLocalStorage></EditLocalStorage>
-      <LocalStorageValues></LocalStorageValues>
+    <div className={`center h-full dark:text-white center-h-col gap-2 p-2`}>
+      <div className={`null text-center`}>
+        Current Section: {control?.state.section}
+        <br />
+        Current Page: {control?.state.page[control?.state.section]}
+      </div>
     </div>
   );
 }

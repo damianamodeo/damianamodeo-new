@@ -1,12 +1,11 @@
-import { Header } from '@ui';
-import { ChevronLeftIcon  } from '@ui';
+import { Header } from '@ui2';
+import { ChevronLeftIcon } from '@ui2';
 
 type HeaderPageHeaderProps = {
   changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
 };
 
 const HeaderComponent = ({ changeSubpage }: HeaderPageHeaderProps) => {
-
   //console.log('Header', `${'variable'}`)
   return (
     <Header
@@ -14,7 +13,9 @@ const HeaderComponent = ({ changeSubpage }: HeaderPageHeaderProps) => {
         <div
           className={`text-[2rem] m-auto`}
           onClick={() => changeSubpage('Home', '>')}
-        ><ChevronLeftIcon /></div>
+        >
+          <ChevronLeftIcon />
+        </div>
       }
       center={<div className={`text-center`}>~</div>}
       right={

@@ -1,4 +1,4 @@
-import { ReactPdfDemo } from '@ui';
+import { ReactPdfDemo } from '@ui2';
 
 /* eslint-disable-next-line */
 export interface ReactPDFProps {}

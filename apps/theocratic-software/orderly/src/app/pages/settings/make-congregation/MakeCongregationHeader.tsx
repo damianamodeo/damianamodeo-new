@@ -1,11 +1,12 @@
-import { Header, ChevronLeftIcon } from '@ui';
+import { Header, ChevronLeftIcon } from '@ui2';
 
 type MakeCongregationHeaderPageHeaderProps = {
   changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
 };
 
-const MakeCongregationHeader = ({ changeSubpage }: MakeCongregationHeaderPageHeaderProps) => {
-
+const MakeCongregationHeader = ({
+  changeSubpage,
+}: MakeCongregationHeaderPageHeaderProps) => {
   //console.log('MakeCongregationHeader', `${'variable'}`)
   return (
     <Header
@@ -13,7 +14,9 @@ const MakeCongregationHeader = ({ changeSubpage }: MakeCongregationHeaderPageHea
         <div
           className={`text-[2rem] m-auto`}
           onClick={() => changeSubpage('Settings', '>')}
-        ><ChevronLeftIcon /></div>
+        >
+          <ChevronLeftIcon />
+        </div>
       }
       center={<div className={`text-center`}>Make Congregation</div>}
       right={

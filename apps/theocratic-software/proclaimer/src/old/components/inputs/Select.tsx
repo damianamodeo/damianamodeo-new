@@ -1,9 +1,9 @@
-import { Listbox, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import widths, { WidthsType } from "./styles2/widths";
-import heights, { HeightsType } from "./styles2/heights";
-import Center from "apps/theocratic-software/proclaimer/src/old/components/containers/Center";
-import { ChevronSortIcon } from "@ui";
+import { Listbox, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import widths, { WidthsType } from './styles2/widths';
+import heights, { HeightsType } from './styles2/heights';
+import Center from 'apps/theocratic-software/proclaimer/src/old/components/containers/Center';
+import { ChevronSortIcon } from '@ui2';
 
 type ListBoxInputType = {
   value: string;
@@ -20,7 +20,7 @@ const ListBoxInput = ({
   options,
   placeholder,
   width,
-  height = "md",
+  height = 'md',
 }: ListBoxInputType) => {
   return (
     <Listbox value={value} onChange={onChange}>
@@ -28,7 +28,7 @@ const ListBoxInput = ({
         <Listbox.Button
           className={`${heights[height]} bg-neutral-200 dark:bg-neutral-700 rounded w-full flex dark:text-white`}
         >
-          {value === "init" ? (
+          {value === 'init' ? (
             <div className="grow my-auto text-neutral-400 text-left">
               {placeholder}
             </div>
@@ -37,8 +37,8 @@ const ListBoxInput = ({
           )}
 
           <Center
-          style={`stroke-blue-500 dark:stroke-blue-400 fill-none stroke-[2]`}
-          vertically
+            style={`stroke-blue-500 dark:stroke-blue-400 fill-none stroke-[2]`}
+            vertically
           >
             <ChevronSortIcon></ChevronSortIcon>
           </Center>
@@ -58,9 +58,7 @@ const ListBoxInput = ({
               <Listbox.Option
                 className={({ active }) =>
                   `px-2 h-16 border-b-[0.7px] bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:border-neutral-600 border-neutral-100 last:border-none flex items-center ${
-                    active
-                      ? "bg-neutral-300 dark:bg-neutral-800"
-                      : ""
+                    active ? 'bg-neutral-300 dark:bg-neutral-800' : ''
                   }`
                 }
                 key={index}
@@ -68,7 +66,7 @@ const ListBoxInput = ({
               >
                 {({ selected }) => (
                   <>
-                    <div className={`text-xl ${selected ? "font-bold" : ""}`}>
+                    <div className={`text-xl ${selected ? 'font-bold' : ''}`}>
                       {option}
                     </div>
                     {selected ? (

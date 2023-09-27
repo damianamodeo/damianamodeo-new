@@ -1,4 +1,4 @@
-import { NivoDemo } from "@ui";
+import { NivoDemo } from '@ui2';
 
 /* eslint-disable-next-line */
 export interface NivoProps {}

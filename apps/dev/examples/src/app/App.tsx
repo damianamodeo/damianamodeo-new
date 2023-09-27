@@ -1,49 +1,59 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HomeIcon, SettingsIcon, Screen } from '@ui';
+import { HomeIcon, SettingsIcon, Screen2 } from '@ui2';
 import { lazy, useEffect } from 'react';
 import Home from './pages/home/home/Home';
-import HomeHeader from './pages/home/home/Header';
+import HomeHeader from './pages/home/home/HomeHeader';
 import Settings from './pages/settings/settings/Settings';
-import SettingsHeader from './pages/settings/settings/Header';
+import SettingsHeader from './pages/settings/settings/SettingsHeader';
 
-const pages = [
+const content = [
   {
-    startPage: 'Home',
+    section: 'Home',
     Icon: HomeIcon,
-    subpages: {
+    pages: {
       Home: {
-        Content: Home,
+        Page: Home,
         Header: HomeHeader,
       },
-      'Local Storage': {
-        Content: lazy(() => import('./pages/home/local-storage/LocalStorage')),
-        Header: lazy(() => import('./pages/home/local-storage/Header')),
+      LocalStorage: {
+        Page: lazy(() => import('./pages/home/local-storage/LocalStorage')),
+        Header: lazy(
+          () => import('./pages/home/local-storage/LocalStorageHeader')
+        ),
       },
-      'React PDF': {
-        Content: lazy(() => import('./pages/home/react-pdf/ReactPDF')),
-        Header: lazy(() => import('./pages/home/react-pdf/Header')),
+      Icons: {
+        Page: lazy(() => import('./pages/home/icons/Icons')),
+        Header: lazy(() => import('./pages/home/icons/IconsHeader')),
       },
-      'React Charts': {
-        Content: lazy(() => import('./pages/home/react-charts/ReactCharts')),
-        Header: lazy(() => import('./pages/home/react-charts/Header')),
-      },
-      Nivo: {
-        Content: lazy(() => import('./pages/home/nivo/Nivo')),
-        Header: lazy(() => import('./pages/home/nivo/Header')),
-      },
+        // {
+        //   name: 'React PDF',
+        //   Page: lazy(() => import('./pages/home/react-pdf/ReactPDF')),
+        //   Header: lazy(() => import('./pages/home/react-pdf/Header')),
+        // },
+        // {
+        //   name: 'React Charts',
+        //   Page: lazy(() => import('./pages/home/react-charts/ReactCharts')),
+        //   Header: lazy(() => import('./pages/home/react-charts/Header')),
+        // },
+        // {
+        //   name: 'Nivo',
+        //   Page: lazy(() => import('./pages/home/nivo/Nivo')),
+        //   Header: lazy(() => import('./pages/home/nivo/Header')),
+        // },
 
-      Dexie: {
-        Content: lazy(() => import('./pages/home/dexie/Dexie')),
-        Header: lazy(() => import('./pages/home/dexie/Header')),
-      },
+        // {
+        //   name: 'Dexie',
+        //   Page: lazy(() => import('./pages/home/dexie/Dexie')),
+        //   Header: lazy(() => import('./pages/home/dexie/Header')),
+        // },
     },
   },
   {
-    startPage: 'Settings',
+    section: 'Settings',
     Icon: SettingsIcon,
-    subpages: {
+    pages: {
       Settings: {
-        Content: Settings,
+        Page: Settings,
         Header: SettingsHeader,
       },
     },
@@ -61,7 +71,7 @@ export function App() {
     };
   }, []);
 
-  return <Screen pages={pages}></Screen>;
+  return <Screen2 content={content}></Screen2>;
 }
 
 export default App;

@@ -1,11 +1,13 @@
-import { Disclosure, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import { ChevronLeftIcon } from "@ui";
+import { Disclosure, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import { ChevronLeftIcon } from '@ui2';
 
 const Accordian = ({ title, children }: any) => {
   return (
     <Disclosure>
-      <Disclosure.Button className={`flex items-stretch w-full rounded dark:bg-neutral-700  text-left hover:bg-neutral-200-xxx bg-neutral-200 dark:hover:bg-neutral-800-xxx focus:outline-none-xxx focus-visible:ring-xxx focus-visible:ring-neutral-500-xxx focus-visible:ring-opacity-75-xxx dark:text-white`}>
+      <Disclosure.Button
+        className={`flex items-stretch w-full rounded dark:bg-neutral-700  text-left hover:bg-neutral-200-xxx bg-neutral-200 dark:hover:bg-neutral-800-xxx focus:outline-none-xxx focus-visible:ring-xxx focus-visible:ring-neutral-500-xxx focus-visible:ring-opacity-75-xxx dark:text-white`}
+      >
         <div className="grow">{title}</div>
         <div className="stroke-blue-500 dark:stroke-blue-400 fill-none stroke-[2] grid place-items-center text-xl p-3">
           <ChevronLeftIcon></ChevronLeftIcon>

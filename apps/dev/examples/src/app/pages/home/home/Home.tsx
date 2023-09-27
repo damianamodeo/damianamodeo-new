@@ -1,27 +1,33 @@
-import { Button } from '@ui';
+import { ContentProps } from '@ui2';
+import {
+  Accordion,
+  Button,
+  Combobox,
+  Dialog,
+  Input,
+  ScrollArea,
+  Select,
+  ThemeToggle,
+} from '@ui';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
-type HomePageProps = {
-  changeSubpage: (newSubpage: string, direction: '<' | '>') => void;
-};
-
-export function Home({ changeSubpage }: HomePageProps) {
+export function Home({ control }: ContentProps) {
   const pages = ['Local Storage', 'React PDF', 'React Charts', 'Nivo', 'Dexie'];
+  const pages2 = ['Icons'];
+  const { toggleTernaryDarkMode } = useTernaryDarkMode();
 
-  //console.log('Home', `${variable}`)
   return (
-    <div className={`dark:text-white center-h-col gap-2 p-2`}>
-      {pages.map((page: string, index: number) => {
-        return (
-          <Button
-            onClick={() => changeSubpage(page, '<')}
-            width={'auto'}
-            key={page}
-          >
-            {page}
-          </Button>
-        );
-      })}
-    </div>
+    <ScrollArea className={`h-full center-h`}>
+      <div className={`center-h grid gap-8 p-2`}>
+        <ThemeToggle></ThemeToggle>
+        <Select></Select>
+        <Button onClick={() => toggleTernaryDarkMode()}>Theme</Button>
+        <Accordion></Accordion>
+        <Combobox></Combobox>
+        <Input type={`number`} placeholder="Number"></Input>
+        <Dialog></Dialog>
+      </div>
+    </ScrollArea>
   );
 }
 

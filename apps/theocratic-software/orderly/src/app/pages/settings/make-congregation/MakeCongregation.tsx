@@ -1,4 +1,4 @@
-import { CreateCongregation, FirebaseUser } from '@ui';
+import { CreateCongregation, FirebaseUser } from '@ui2';
 
 type MakeCongregationPageProps = {
   changeSubpage: (newSubpage: string, direction: '<' | '>') => void;

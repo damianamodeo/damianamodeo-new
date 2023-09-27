@@ -3,7 +3,7 @@ import Home from './pages/home/home/Home';
 import HomeHeader from './pages/home/home/HomeHeader';
 import Settings from './pages/settings/settings/Settings';
 import SettingsHeader from './pages/settings/settings/SettingsHeader';
-import { HomeIcon, SettingsIcon, Screen } from '@ui';
+import { HomeIcon, SettingsIcon, Screen } from '@ui2';
 
 const pages = [
   // Home Pages

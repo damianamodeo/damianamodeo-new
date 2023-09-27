@@ -1,4 +1,4 @@
-import { ReactChartsDemo } from "@ui";
+import { ReactChartsDemo } from '@ui2';
 
 /* eslint-disable-next-line */
 export interface ReactChartsProps {}

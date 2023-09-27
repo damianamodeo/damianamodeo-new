@@ -1,4 +1,4 @@
-import { Header } from '@ui';
+import { Header } from '@ui2';
 
 type SettingsHeaderPageHeaderProps = {
   changeSubpage: (newSubpage: string, direction: '<' | '>') => void;

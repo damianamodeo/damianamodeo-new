@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HomeIcon, SettingsIcon, Screen } from '@ui';
+import { HomeIcon, SettingsIcon, Screen } from '@ui2';
 import { lazy, useEffect } from 'react';
 import Home from './pages/home/home/Home';
 import HomeHeader from './pages/home/home/HomeHeader';
@@ -26,8 +26,13 @@ const pages = [
         Header: SettingsHeader,
       },
       makeCongregation: {
-        Content: lazy(()=> import('./pages/settings/make-congregation/MakeCongregation')),
-        Header: lazy(()=> import('./pages/settings/make-congregation/MakeCongregationHeader')),
+        Content: lazy(
+          () => import('./pages/settings/make-congregation/MakeCongregation')
+        ),
+        Header: lazy(
+          () =>
+            import('./pages/settings/make-congregation/MakeCongregationHeader')
+        ),
       },
     },
   },

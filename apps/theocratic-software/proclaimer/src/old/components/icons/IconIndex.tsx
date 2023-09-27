@@ -1,8 +1,8 @@
-import { VariantProps, cva } from "class-variance-authority";
-import { twMerge } from "tailwind-merge";
-import { ChevronLeftIcon, ChevronSortIcon, SettingsIcon } from "@ui";
+import { VariantProps, cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
+import { ChevronLeftIcon, ChevronSortIcon, SettingsIcon } from '@ui2';
 
-const defaultColor: any =  "proclaimer";
+const defaultColor: any = 'proclaimer';
 
 const style = cva(``, {
   variants: {
@@ -34,19 +34,19 @@ const style = cva(``, {
       rose: `stroke-rose-500 dark:stroke-rose-400`,
     },
     size: {
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-      xl: "text-xl",
-      xxl: "text-2xl",
-      xxxl: "text-3xl",
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+      xxl: 'text-2xl',
+      xxxl: 'text-3xl',
     },
   },
   compoundVariants: [{}],
   defaultVariants: {
     color: defaultColor,
-    size: "md",
+    size: 'md',
   },
 });
 
@@ -76,7 +76,7 @@ export const UpDownArrow = ({ color, size }: any) => {
 
 export const BackArrow = ({
   color,
-  size = "xxxl",
+  size = 'xxxl',
 }: VariantProps<typeof style>) => {
   return (
     <div
