@@ -26,8 +26,12 @@ const variants = {
 export type ContentProps = {
   control?: {
     state: State;
-    changeSection: (section: string) => void;
-    changePage: (section: string, page: string, direction: Direction) => void;
+    changeSection: ({}: { section: string }) => void;
+    changePage: ({}: {
+      section: string;
+      page: string;
+      direction: Direction;
+    }) => void;
   };
 };
 
@@ -63,7 +67,7 @@ export const reducer = (
   return { ...state };
 };
 
-export type Screen2Props = {
+export type ScreenProps = {
   content: {
     section: string;
     Icon: JSXElementConstructor<any>;
@@ -78,7 +82,7 @@ export type Screen2Props = {
   }[];
 };
 
-export const Screen2 = ({ content }: Screen2Props) => {
+export const Screen = ({ content }: ScreenProps) => {
   // const { isDarkMode } = useTernaryDarkMode();
 
   const initialState: State = {
@@ -95,14 +99,22 @@ export const Screen2 = ({ content }: Screen2Props) => {
   const control = {
     state: state,
 
-    changeSection: (section: string) => {
+    changeSection: ({ section }: { section: string }) => {
       dispatch({
         type: 'section',
         payload: { section: section },
       });
     },
 
-    changePage: (section: string, page: string, direction: Direction) => {
+    changePage: ({
+      section,
+      page,
+      direction,
+    }: {
+      section: string;
+      page: string;
+      direction: Direction;
+    }) => {
       dispatch({
         type: 'page',
         payload: { section: section, page: page, direction: direction },
@@ -133,7 +145,9 @@ export const Screen2 = ({ content }: Screen2Props) => {
                 )}
 
                 <div
-                  className={`fixed inset-y-16 w-full dark:bg-black dark:text-white overflow-y-auto hideScollbar`}
+                  className={`fixed ${
+                    Header ? 'inset-y-16' : 'bottom-16 h-full'
+                  } w-full dark:bg-black dark:text-white overflow-y-auto hideScollbar`}
                 >
                   <AnimatePresence
                     mode="popLayout"
@@ -182,8 +196,12 @@ export const Screen2 = ({ content }: Screen2Props) => {
               }`}
               onClick={() =>
                 state.section === section
-                  ? control.changePage(section, section, '<')
-                  : control.changeSection(section)
+                  ? control.changePage({
+                      section: section,
+                      page: section,
+                      direction: '<',
+                    })
+                  : control.changeSection({ section: section })
               }
             >
               <Icon {...(state.section !== section && { color: 'default' })} />
@@ -196,4 +214,4 @@ export const Screen2 = ({ content }: Screen2Props) => {
   );
 };
 
-export default Screen2;
+export default Screen;

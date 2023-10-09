@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HomeIcon, SettingsIcon, Screen2 } from '@ui2';
+import { HomeIcon, SettingsIcon, Screen } from '@ui';
 import { lazy, useEffect } from 'react';
 import Home from './pages/home/home/Home';
 import HomeHeader from './pages/home/home/HomeHeader';
@@ -15,7 +15,7 @@ const content = [
         Page: Home,
         Header: HomeHeader,
       },
-      LocalStorage: {
+      "Local Storage": {
         Page: lazy(() => import('./pages/home/local-storage/LocalStorage')),
         Header: lazy(
           () => import('./pages/home/local-storage/LocalStorageHeader')
@@ -24,6 +24,18 @@ const content = [
       Icons: {
         Page: lazy(() => import('./pages/home/icons/Icons')),
         Header: lazy(() => import('./pages/home/icons/IconsHeader')),
+      },
+      "Refactor Firestore": {
+        Page: lazy(() => import('./pages/home/refactor-firestore/RefactorFirestore')),
+        Header: lazy(() => import('./pages/home/refactor-firestore/RefactorFirestoreHeader')),
+      },
+      "Inputs": {
+        Page: lazy(() => import('./pages/home/inputs/Inputs')),
+        Header: lazy(() => import('./pages/home/inputs/InputsHeader')),
+      },
+      "Record": {
+        Page: lazy(() => import('./pages/home/record/Record')),
+        Header: lazy(() => import('./pages/home/record/RecordHeader')),
       },
         // {
         //   name: 'React PDF',
@@ -71,7 +83,7 @@ export function App() {
     };
   }, []);
 
-  return <Screen2 content={content}></Screen2>;
+  return <Screen content={content}></Screen>;
 }
 
 export default App;

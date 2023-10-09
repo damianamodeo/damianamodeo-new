@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
+
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCwGMjrdMDxItBfYJkwuzIUuekqY1QAc_k",
   authDomain: "theocratic-software.firebaseapp.com",

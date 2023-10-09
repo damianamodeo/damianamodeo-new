@@ -14,7 +14,7 @@ const HeaderComponent = ({ control }: ContentProps) => {
           <ChevronLeftIcon />
         </div>
       }
-      center={<div className={`text-center`}>Header</div>}
+      center={<div className={`text-center`}>Home</div>}
       right={
         <div
           className={`text-[2rem] m-auto`}

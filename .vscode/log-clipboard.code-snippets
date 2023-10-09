@@ -9,7 +9,7 @@
   "-Log Clipboard": {
     "scope": "typescript,typescriptreact,javascript,javascriptreact",
     "prefix": "log",
-    "body": ["  console.log($CLIPBOARD); //Log Variable\n"],
+    "body": ["  console.log($CLIPBOARD);\n"],
     "description": "Log variable to console"
   }
 }

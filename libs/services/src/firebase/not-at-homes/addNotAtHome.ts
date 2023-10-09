@@ -1,5 +1,5 @@
 import { doc, runTransaction } from "firebase/firestore";
-import { fdb } from "./config";
+import { fdb } from "@services";
 
 type NotAtHomeType = {
   cong: string;

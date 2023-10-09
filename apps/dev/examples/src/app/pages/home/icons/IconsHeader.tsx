@@ -1,4 +1,4 @@
-import { Header, ChevronLeftIcon, ContentProps } from '@ui2';
+import { Header, ChevronLeftIcon, ContentProps } from '@ui';
 
 export function IconsHeader({ control }: ContentProps) {
   return (
@@ -6,7 +6,13 @@ export function IconsHeader({ control }: ContentProps) {
       left={
         <div
           className={`text-[2rem] m-auto`}
-          onClick={() => control?.changePage('Home', 'Home', '<')}
+          onClick={() =>
+            control?.changePage({
+              section: 'Home',
+              page: 'Home',
+              direction: '<',
+            })
+          }
         >
           <ChevronLeftIcon />
         </div>

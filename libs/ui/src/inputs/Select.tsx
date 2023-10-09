@@ -1,5 +1,6 @@
 // 'use client';
 
+import { ReactNode } from 'react';
 import {
   Select as SelectRoot,
   SelectGroup,
@@ -10,18 +11,42 @@ import {
   SelectItem,
   SelectSeparator,
 } from '../shadcn/select';
+import { Label } from '@ui';
 
-export const Select = () => {
+type Props = {
+  label: string;
+  options: { label: string | ReactNode; value: string }[];
+  placeholder: string;
+  onValueChange: (value: string) => void;
+};
+
+export const Select = ({
+  options,
+  placeholder,
+  onValueChange,
+  label,
+}: Props) => {
   return (
-    <SelectRoot>
-      <SelectTrigger className="w-[180px] focus:ring-offset-0">
-        <SelectValue placeholder="Theme" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="light">Light</SelectItem>
-        <SelectItem value="dark">Dark</SelectItem>
-        <SelectItem value="system">System</SelectItem>
-      </SelectContent>
-    </SelectRoot>
+    <div className="grid gap-1">
+      {label && (
+        <Label className="">
+          {label}
+        </Label>
+      )}
+      <SelectRoot onValueChange={onValueChange}>
+        <SelectTrigger id={label} className="w-[180px] focus:ring-offset-0 dark:text-white">
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => {
+            return (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </SelectRoot>
+    </div>
   );
 };

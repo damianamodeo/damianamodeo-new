@@ -1,4 +1,4 @@
-import { fdb } from "./config";
+import { fdb } from "@services";
 import {
   deleteField,
   doc,
@@ -17,13 +17,21 @@ type AddressType = {
   letter: boolean;
 };
 
-const deleteAddress = async (address: any) => {
+const updateNotAtHome = async (address: any, key: any, value: any) => {
   const documentRef = doc(fdb, "notAtHomes", "MaitlandCongregation");
   try {
     const newAddress = await runTransaction(fdb, async (transaction) => {
-      transaction.update(documentRef, { [address.key]: deleteField() });
+      const addressDetails: any = await transaction
+        .get(documentRef)
+        .then((a) => {
+          return a.data();
+        });
+
+      transaction.update(documentRef, {
+        ...addressDetails,
+        [address.key]: { ...addressDetails[address.key], [key]: value },
+      });
     });
-    console.log("<<< NOT AT HOME DELETED >>>\nAddress Details:", address);
     return newAddress;
   } catch (e: any) {
     console.error(e.message);
@@ -31,4 +39,4 @@ const deleteAddress = async (address: any) => {
   }
 };
 
-export default deleteAddress;
+export default updateNotAtHome;

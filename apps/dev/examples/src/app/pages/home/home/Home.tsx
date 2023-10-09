@@ -1,4 +1,4 @@
-import { ContentProps } from '@ui2';
+import { ContentProps } from '@ui';
 import {
   Accordion,
   Button,
@@ -7,25 +7,43 @@ import {
   Input,
   ScrollArea,
   Select,
-  ThemeToggle,
 } from '@ui';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
 export function Home({ control }: ContentProps) {
-  const pages = ['Local Storage', 'React PDF', 'React Charts', 'Nivo', 'Dexie'];
-  const pages2 = ['Icons'];
+  const pages = [
+    'Refactor Firestore',
+    'Icons',
+    'Inputs',
+    'Record',
+    // 'Local Storage',
+    // 'React PDF',
+    // 'React Charts',
+    // 'Nivo',
+    // 'Dexie',
+  ];
   const { toggleTernaryDarkMode } = useTernaryDarkMode();
 
   return (
-    <ScrollArea className={`h-full center-h`}>
-      <div className={`center-h grid gap-8 p-2`}>
-        <ThemeToggle></ThemeToggle>
-        <Select></Select>
-        <Button onClick={() => toggleTernaryDarkMode()}>Theme</Button>
-        <Accordion></Accordion>
-        <Combobox></Combobox>
-        <Input type={`number`} placeholder="Number"></Input>
-        <Dialog></Dialog>
+    <ScrollArea className={`h-full center-h p-2`}>
+      <div className={`${null} grid center-col gap-3 `}>
+        {pages.map((page, index) => {
+          return (
+            <Button
+              className={`${null} w-80 h-16 text-white text-2xl`}
+              key={index}
+              onClick={() =>
+                control?.changePage({
+                  section: 'Home',
+                  page: page,
+                  direction: '>',
+                })
+              }
+            >
+              {page}
+            </Button>
+          );
+        })}
       </div>
     </ScrollArea>
   );
