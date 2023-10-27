@@ -15,8 +15,12 @@
     // "**/services": true,
     // "**/ui": true,
 
+    // Folders
+    "**/local": true,
     "**/tools": true,
-    // "**/dist": true,
+    "**/dist": true,
+    // "**/*-e2e": true,
+
     "**/.firebase": true,
     "**/.env": false,
     // "**/.files": true

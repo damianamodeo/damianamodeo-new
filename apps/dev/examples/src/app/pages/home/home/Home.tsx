@@ -16,6 +16,8 @@ export function Home({ control }: ContentProps) {
     'Icons',
     'Inputs',
     'Record',
+    'Firebase',
+    'Mapbox',
     // 'Local Storage',
     // 'React PDF',
     // 'React Charts',
@@ -24,9 +26,18 @@ export function Home({ control }: ContentProps) {
   ];
   const { toggleTernaryDarkMode } = useTernaryDarkMode();
 
+  const testFunction = () => {
+    const test = undefined;
+    if (test) {
+      console.log('🚀 \n~ file: Home.tsx:31 \n~ testFunction \n~ test:', test);
+    }
+    return;
+  };
+
   return (
     <ScrollArea className={`h-full center-h p-2`}>
       <div className={`${null} grid center-col gap-3 `}>
+        <Button onClick={testFunction}>Test Function</Button>
         {pages.map((page, index) => {
           return (
             <Button

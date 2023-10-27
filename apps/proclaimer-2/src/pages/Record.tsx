@@ -2,7 +2,7 @@ import {
   Combobox,
   ContentProps,
   FirestoreDocumentRefactor,
-  SearchForSuburb,
+  AddSuburb,
 } from '@ui';
 import {
   // useFirestoreData,
@@ -15,8 +15,7 @@ import { useEffect, useState } from 'react';
 export function Record({ control }: ContentProps) {
   return (
     <>
-      <FirestoreDocumentRefactor ></FirestoreDocumentRefactor>
-      <SearchForSuburb></SearchForSuburb>
+      <FirestoreDocumentRefactor></FirestoreDocumentRefactor>
     </>
   );
 }

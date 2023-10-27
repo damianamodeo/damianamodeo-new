@@ -1,18 +1,10 @@
 import { doc, runTransaction } from 'firebase/firestore';
-import { fdb } from '@services';
+import { FirestorePaths, FirestoreProperties, fdb } from '@services';
 
-type Arguments = {
-  congregation: string;
-  document: string | 'maps';
-  property: any;
-};
+type Arguments = { path: FirestorePaths; property: FirestoreProperties };
 
-export const deleteDocProperty = async ({
-  congregation,
-  document,
-  property,
-}: Arguments) => {
-  const documentRef = doc(fdb, congregation, document);
+export const deleteDocProperty = async ({ path, property }: Arguments) => {
+  const documentRef = doc(fdb, path);
   try {
     const updatedData: any = await runTransaction(fdb, async (transaction) => {
       const newData = await transaction.get(documentRef).then((data) => {

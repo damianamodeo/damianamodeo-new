@@ -1,16 +1,19 @@
 import { doc, runTransaction } from 'firebase/firestore';
-import { fdb } from '@services';
+import { FirestorePaths, fdb } from '@services';
 
-type Arguments = { congregation: string; document: string | 'maps'; data: any };
+type Arguments = { path: FirestorePaths; data: { [key: string]: any } };
 
-export const updateDocProperty = async ({
-  congregation,
-  document,
-  data,
-}: Arguments) => {
-  const documentRef = doc(fdb, congregation, document);
+export const updateDocProperty = async ({ path, data }: Arguments) => {
+  const documentRef = doc(fdb, path);
   try {
     const writtenData: any = await runTransaction(fdb, async (transaction) => {
+      const document = await transaction.get(documentRef);
+
+      if (!document.exists()) {
+        transaction.set(documentRef, data);
+        return data;
+      }
+
       transaction.update(documentRef, data);
       return data;
     });

@@ -1,26 +1,24 @@
-import { doc, onSnapshot } from 'firebase/firestore';
+import { DocumentData, doc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { fdb } from '../config';
+import { FirestorePaths } from '@services';
 
-export function useFirestoreData({
-  congregation,
-  document,
-}: {
-  congregation: string;
-  document: string | 'maps';
-}) {
-  const [data, setData] = useState({});
+export const useFirestoreData = ({ path }: { path: FirestorePaths }) => {
+  const [data, setData] = useState({} as DocumentData | undefined);
+
   useEffect(() => {
-    const unsub = onSnapshot(doc(fdb, congregation, document), (doc) => {
-      if (doc.data()) {
-        setData(doc.data()?.mapDetails);
+    const unsub = onSnapshot(doc(fdb, path), (doc) => {
+      
+      if (!doc.data()) {
+        // return new Error();
       }
+      setData(doc.data());
     });
     return () => {
       unsub();
     };
   }, []);
   return data;
-}
+};
 
 export default useFirestoreData;

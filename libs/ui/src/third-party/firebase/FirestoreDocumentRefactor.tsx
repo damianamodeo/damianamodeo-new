@@ -1,11 +1,14 @@
 import {
   deleteDoc,
   deleteDocProperty,
+  docPaths,
   updateDocProperty,
   useFirestoreData,
   writeNewDoc,
 } from '@services';
 import { Button, ThemeSelect } from '@ui';
+
+const path = docPaths.test
 
 export const FirestoreDocumentRefactor = () => {
   const oldCongregationOptions = [
@@ -20,10 +23,7 @@ export const FirestoreDocumentRefactor = () => {
   const newCongregation = 'test';
   const newDocument = 'territoryData';
 
-  const originalData: any = useFirestoreData({
-    congregation: oldCongregation,
-    document: oldDocument,
-  });
+  const originalData: any = useFirestoreData({ path: path });
 
   const logOriginalData = () => {
     console.log(originalData);
@@ -36,8 +36,7 @@ export const FirestoreDocumentRefactor = () => {
   const writeData = async () => {
     const newData = { data: originalData[0].suburbs };
     const writtenData = await writeNewDoc({
-      congregation: newCongregation,
-      document: newDocument,
+      path: path,
       data: newData,
     });
     console.log(writtenData);
@@ -45,16 +44,14 @@ export const FirestoreDocumentRefactor = () => {
 
   const deleteData = async () => {
     const writtenData = await deleteDoc({
-      congregation: newCongregation,
-      document: newDocument,
+      path: path,
     });
     console.log(writtenData);
   };
 
   const updateData = async () => {
     const writtenData = await updateDocProperty({
-      congregation: newCongregation,
-      document: newDocument,
+      path: path,
       data: { data: 'fail' },
     });
     console.log(writtenData);
@@ -62,8 +59,7 @@ export const FirestoreDocumentRefactor = () => {
 
   const deleteProperty = async () => {
     const writtenData = await deleteDocProperty({
-      congregation: newCongregation,
-      document: newDocument,
+      path: path,
       property: 'test',
     });
     console.log(writtenData);

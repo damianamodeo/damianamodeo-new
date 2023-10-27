@@ -1,10 +1,8 @@
 import { doc, runTransaction } from 'firebase/firestore';
-import { fdb } from '@services';
+import { FirestorePaths, fdb } from '@services';
 
-type Arguments = { congregation: string; document: string | 'maps' };
-
-export const deleteDoc = async ({ congregation, document }: Arguments) => {
-  const documentRef = doc(fdb, congregation, document);
+export const deleteDoc = async ({ path }: { path: FirestorePaths }) => {
+  const documentRef = doc(fdb, path);
   try {
     const writtenData: any = await runTransaction(fdb, async (transaction) => {
       transaction.delete(documentRef);

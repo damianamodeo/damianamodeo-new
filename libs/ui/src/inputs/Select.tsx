@@ -14,27 +14,28 @@ import {
 import { Label } from '@ui';
 
 type Props = {
-  label: string;
+  label?: string;
   options: { label: string | ReactNode; value: string }[];
-  placeholder: string;
+  placeholder?: string;
   onValueChange: (value: string) => void;
+  value: string | undefined;
 };
 
 export const Select = ({
   options,
-  placeholder,
+  placeholder = 'select',
   onValueChange,
   label,
+  value,
 }: Props) => {
   return (
     <div className="grid gap-1">
-      {label && (
-        <Label className="">
-          {label}
-        </Label>
-      )}
-      <SelectRoot onValueChange={onValueChange}>
-        <SelectTrigger id={label} className="w-[180px] focus:ring-offset-0 dark:text-white">
+      {label && <Label className="">{label}</Label>}
+      <SelectRoot onValueChange={onValueChange} value={value}>
+        <SelectTrigger
+          id={label}
+          className="w-[180px] focus:ring-offset-0 dark:text-white"
+        >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>

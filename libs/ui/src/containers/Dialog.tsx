@@ -4,30 +4,50 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogClose,
   DialogTitle,
   DialogTrigger,
 } from '../shadcn/dialog';
+import { cn } from '@services';
+import { useState } from 'react';
 
-export const Dialog = () => {
-  const { isDarkMode } = useTernaryDarkMode();
+type Props = {
+  children: string | React.ReactNode;
+  title?: string | React.ReactNode;
+  trigger?: string | React.ReactNode;
+  className?: string;
+  open?: boolean;
+  setOpen?: (value: boolean) => void; //this should not be a number but trying to create an error to find out what it should be
+};
 
+export const Dialog = ({
+  children,
+  title,
+  trigger,
+  className,
+  open,
+  setOpen,
+}: Props) => {
   return (
-    <DialogRoot>
-      <DialogTrigger >Open</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle >Are you sure absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers. Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Reprehenderit blanditiis quo
-            optio iure odit exercitationem perferendis maxime asperiores dolores
-            at! Corporis natus quam neque veniam consequuntur, ut et officia
-            eveniet quisquam? Ratione eveniet recusandae sunt modi labore
-            itaque, repudiandae distinctio earum, perspiciatis voluptatum
-            aliquid, dolore commodi nihil hic? Obcaecati, omnis.
-          </DialogDescription>
-        </DialogHeader>
+    <DialogRoot
+      open={open}
+      // onOpenChange={setOpen}
+    >
+      {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
+      <DialogContent className={cn('', className)}>
+        {/* <DialogHeader> */}
+        {/* <DialogDescription>{children}</DialogDescription> */}
+        {/* </DialogHeader> */}
+        {setOpen && (
+          <DialogClose
+            onClick={() => {
+              console.log('ggg');
+              setOpen(false);
+            }}
+          ></DialogClose>
+        )}
+        {title && <DialogTitle className="pb-4">{title}</DialogTitle>}
+        {children}
       </DialogContent>
     </DialogRoot>
   );

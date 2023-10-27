@@ -1,3 +1,5 @@
+export * from './app/SelectSuburb';
+
 export * from './components/ThemeSelect';
 
 export * from './containers/Accordion';
@@ -29,4 +31,4 @@ export * from './inputs/Select';
 
 export * from './third-party/firebase/FirestoreDocumentRefactor';
 
-export * from './third-party/mapbox/SearchForSuburb';
+export * from './third-party/mapbox/AddSuburb';

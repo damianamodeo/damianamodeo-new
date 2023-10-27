@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const fdb = getFirestore();
 export const auth = getAuth(app)
 
-// if (import.meta.env.DEV) { 
-//   connectFirestoreEmulator(fdb, "localhost", 8080);
-//   connectAuthEmulator(auth, 'http://localhost:9099');
-// }
+if (import.meta.env.DEV) { 
+  connectFirestoreEmulator(fdb, "localhost", 8080);
+  connectAuthEmulator(auth, 'http://localhost:9099');
+}
